@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
 			n3=n2;
 			n2=aux;
 
-			if(n2>n1)
+			if(n2<n1)
 			{
 				aux=n1;
 				n1=n2;
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
 			n3=n2;
 			n2=aux;
 
-			if(n2>n1)
+			if(n1>n2)
 			{
 				aux=n1;
 				n1=n2;
@@ -51,7 +51,8 @@ int main(int argc, char const *argv[])
 	}
 
 
-	printf("%d  %d  %d\n",n1,n2,n3);
+	printf("sequencia crescente:%d  %d  %d\n",n1,n2,n3);
+	printf("maior numero:%d \n",n3);
 /*
 	if(n1>n2)
 	{
