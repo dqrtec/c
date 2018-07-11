@@ -1,0 +1,1 @@
+cls && gcc -c viagem.c -o viagem.o && gcc -c usuario.c -o usuario.o && gcc usuario.o viagem.o -o exe
