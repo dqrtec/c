@@ -1,36 +1,43 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(void){
-	int i, n, aux = 0;
-	int op = 1;
-	printf("Informe a quantidade de elementos "); scanf("%d", &n);
+int main(int argc, char const *argv[])
+{
+	int n,i,j,op,soma;
+	scanf("%d",&n);
+	soma=n-1;
 
-	int *vetor = (int*) malloc(n*sizeof(int)); 
+	
+	int* v = (int*)malloc((sizeof(int)*n));
 
-	for(i=0; i<n; i++){
-		printf("Informe o %d elemento ", i+1); scanf("%d", &vetor[i]);
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&v[i]);
 	}
 
-	while(op == 1){
-		aux += n;
-		printf("Deseja insirir mais elementos? (1/0) "); scanf("%d", &op);
-		if(op == 1){
-			printf("Informe a quantidade de elementos "); scanf("%d", &n);
-			
-			vetor = (int*) realloc(vetor, n*sizeof(int));
+	do
+	{
+		printf("digite 0 para sair e 1 para alocar mais memoria\n");
+		scanf("%d",&op);
 
-			for(i=aux; i<aux+n; i++){
-				printf("Informe o %d elemento ", i+1); scanf("%d", &vetor[i]);
-			}
+		if(op==1)
+		{
+
+			scanf("%d",&n);
+			v = (int*) realloc(v,(n*sizeof(int)));
+				for(i=soma+1;i<=n+soma;i++)
+				{
+					scanf("%d",&v[i]);
+				}
+			soma+=n;
 		}
+	}while(op!=0);
+
+	printf("LISTA DE NUMEROS ADICIONADOS\n");
+	for (i = 0; i <= soma; i++)
+	{
+		printf("%d , ",v[i]);
 	}
 
-	for(i=0; i<aux; i++){
-		printf("%d ", vetor[i]);
-	}
-
-	printf("\n");
-	free(vetor);
 	return 0;
 }

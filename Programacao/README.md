@@ -1,1 +1,1 @@
-Cadeira de Programação
+Cadeira de Programação da UFC

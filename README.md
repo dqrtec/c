@@ -1,2 +1,2 @@
 # c
-trabalhos da cadeira de programação
+tudo o que foi aprendido com as linguagens C/C++

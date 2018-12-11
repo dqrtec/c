@@ -1,45 +1,50 @@
 #include <stdio.h>
+#include <string.h>
 
-int main(void){
-	int i, n, somaTermo;
-	printf("Informe a quantidade de digitos "); scanf("%d", &n);
+int main(int argc, char const *argv[])
+{
 
-	int seq1[n], seq2[n], soma[n+1];
+	int n,soma=0,aux=0;
 
-	for(i=0; i<n; i++){
-		printf("Informe %d digito da primeira sequência ", i+1); scanf("%d", &seq1[i]);
-		
-	}
-	printf("\n");
-	for(i=0; i<n; i++){
-		printf("Informe %d digito da segunda sequência ", i+1); scanf("%d", &seq2[i]);
+	scanf("%d",&n);
 
-	}
-	for(i=0; i<=n; i++){
-		soma[i] = 0;	
-	}
-	for(i=n; i>0; i--){
-		
-		soma[i] += seq1[i-1] + seq2[i-1];
+	int n1[n] , n2[n] , n3[n+1];
 
-		if(soma[i] >= 10){
-			soma[i] -= 10;
-			soma[i-1] = 1;
-		}
-		
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d",&n1[i]);
 	}
 
-	if(soma[0] == 0)
-		i = 1;
-	else
-		i = 0;
-
-	printf("A soma de é ");
-	for(i; i<=n; i++){
-		printf("%d", soma[i]);	
+	for (int i = 0; i < n; i++)
+	{
+		scanf("%d",&n2[i]);
 	}
-	printf("\n");
+
+	for (int i = 0; i < n+1; i++)
+	{
+		n3[i]=0;
+	}
+
+
+	printf("\n\n>>");
+
+	for (int i = n-1; 0 <= i; i--)
+	{
+		soma=n2[i]+n1[i];
+		printf("soma %d\n",soma);
+		//printf("soma= %d\n",soma );
+		aux=n3[i+1];
+		n3[i+1]=((soma+n3[i+1])%10);
+		printf("atribuição n[i+1] %d >> %d\n",i, n3[i+1]);
+		n3[i]+=aux+((soma-((soma+aux)%10))/10);
+		printf("atribuição n[i] %d >> %d\n",i, n3[i]);
+
+	}
+
+	for (int i = 0; i < n+1; i++)
+	{
+		printf("%d ", n3[i]);
+	}
 
 	return 0;
 }
-

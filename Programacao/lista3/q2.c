@@ -1,28 +1,51 @@
 #include <stdio.h>
-#define N 10
-int menorElemento(int *vetor, int n){
-	int menorNum = vetor[0];
-	for(int i=0; i<n; i++){
-		if(menorNum > vetor[i])
-			menorNum = vetor[i];
-	}
-	return menorNum;
-}
 
-int maiorElemento(int *vetor, int n){
-	int maiorNum = vetor[0];
-	for(int i=0; i<n; i++){
-		if(maiorNum < vetor[i])
-			maiorNum = vetor[i];
-	}
-	return maiorNum;
-}
+int min(int* vet,int a,int* minimo);
 
-int main(void){
+int max(int* vet,int a,int* maximo);
 
-	int vetor[N] = {8, 4, 2, 9, 0, 1, 5, 3, 6, 7};
-	int menor = menorElemento(vetor, N);
-	int maior = maiorElemento(vetor, N);
-	printf("Menor: %d Maior: %d\n", maior, menor);
+int main(int argc, char const *argv[])
+{
+	int a=10;
+	int vet[]={1,2,3,4,5,6,7,8,9,10};
+	int minimo=0;
+	int maximo=0;
+	min(vet,a,&minimo);
+	max(vet,a,&maximo);
+	printf("minimo %d\n",minimo);
+	printf("maximo %d\n",maximo);
 	return 0;
+}
+
+int min(int* vet,int a,int* minimo)
+{
+	int menor = vet[0];
+	
+	for(int i=1;i<a;i++)
+	{
+		if(vet[i]<menor)
+		{
+			menor=vet[i];
+		}
+	}
+
+	*minimo=menor;
+
+}
+
+
+int max(int* vet,int a,int* maximo)
+{
+	int maior = vet[0];
+	
+	for(int i=1;i<a;i++)
+	{
+		if(vet[i]>maior)
+		{
+			maior=vet[i];
+		}
+	}
+
+	*maximo=maior;
+
 }

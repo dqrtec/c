@@ -1,22 +1,21 @@
 #include <stdio.h>
-#define N 10
-int calcEscalar(int *vetor1, int *vetor2, int numElementos){
-	int escalar = 0;
-	for(int i=0; i<numElementos; i++){
-		escalar += (vetor1[i] * vetor2[i]);
+
+void somatorio(int* vet_a,int* vet_b,int* s,int n)
+{
+	for(int i =0;i<n;i++)
+	{
+		*s += vet_a[i]*vet_b[i];
 	}
-	return escalar;
 }
 
-int main(void){
-	int escalar;
-	int vetor1[N], vetor2[N];
-	for(int i=0; i<N; i++){
-		printf("Informe o elemento %d do conjunto 1 ", i); scanf("%d", &vetor1[i]);
-		printf("Informe o elemento %d do conjunto 2 ", i); scanf("%d", &vetor2[i]);
-	}
+int main(int argc, char const *argv[])
+{
+	int a[]={1,2,3,4,5,6,7,8,9,10};
+	int b[]={10,9,8,7,6,5,4,3,2,1};
+	int soma=0;
+	int n=10;
+	somatorio(a,b,&soma,n);
+	printf("%d\n",soma);
 
-	escalar = calcEscalar(vetor1, vetor2, N);
-	printf("O produto escalar é %d\n", escalar);
 	return 0;
 }

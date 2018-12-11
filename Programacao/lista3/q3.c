@@ -1,71 +1,95 @@
 #include <stdio.h>
 
-float melhorTempo(float *vetor, int numVoltas){
-	float melhor = vetor[0];
-	for(int i=0; i<numVoltas; i++){
-		if(melhor > vetor[i])
-			melhor = vetor[i];
-	}
-	return melhor;
-}
+void media(int* vet,int a);
 
-float piorTempo(float *vetor, int numVoltas){
-	float pior = vetor[0];
-	for(int i=0; i<numVoltas; i++){
-		if(pior < vetor[i])
-			pior = vetor[i];
-	}
-	return pior;	
-}
+void prencher_lista(int* vet,int n);
 
-int melhorVolta(float *vetor, int numVoltas){
-	int i = 0;
-	float melhor = melhorTempo(vetor, numVoltas);
-	while(melhor != vetor[i]){
-		i++;
-	}
-	return i+1;
-}
+int min_tempo(int* vet,int a,int* minimo,int* volta_minimo);
 
-int piorVolta(float *vetor, int numVoltas){
-	int i = 0;
-	float pior = piorTempo(vetor, numVoltas);
-	while(pior != vetor[i]){
-		i++;
-	}
-	return i+1;
-}
+int max_tempo(int* vet,int a,int* maximo,int* volta_maximo);
 
-float tempoMedio(float *vetor, int numVoltas){
-	float somaVoltas = 0;
-	for(int i=0; i<numVoltas; i++){
-		somaVoltas += vetor[i];
-	}
-	return somaVoltas/numVoltas;
-}
+int main(int argc, char const *argv[])
+{
+	int a=0;
+	scanf("%d",&a);
+	int vet[a];
+	prencher_lista(vet,a);
 
-int main(void){
-	int n;
-	int melhorVolt, piorVolt; 
-	float melhorTemp, piorTemp, media;
+	int minimo=0;
+	int maximo=0;
 
-	printf("Informe o número de voltas "); scanf("%d", &n);
-	float voltas[n];
-	for(int i = 0; i<n; i++){
-		printf("Tempo da volta %d ", i+1); scanf("%f", &voltas[i]);
-	}
+	int volta_min=0;
+	int volta_max=0;
 
-	melhorTemp = melhorTempo(voltas, n);
-	piorTemp = piorTempo(voltas, n);
-	melhorVolt = melhorVolta(voltas, n);
-	piorVolt = piorVolta(voltas, n);
-	media = tempoMedio(voltas, n);
+	min_tempo(vet,a,&minimo,&volta_min);
+	max_tempo(vet,a,&maximo,&volta_max);
 
-	printf("Melhor tempo: %.2fs\n", melhorTemp);
-	printf("Pior tempo: %.2fs\n", piorTemp);
-	printf("Melhor volta: %d\n", melhorVolt);
-	printf("Pior volta: %d\n", piorVolt);
-	printf("Tempo médio das voltas: %.2fs\n", media);
+	media(vet,a);
+	
+	printf("volta %d tempo minimo %d\n",volta_min,minimo);
+	printf("volta %d tempo maximo %d\n",volta_max,maximo);
 
 	return 0;
+}
+
+
+int min_tempo(int* vet,int a,int* minimo,int* volta_minimo)
+{
+	int menor = vet[0];
+	int volta = 1;
+	
+	for(int i=1;i<a;i++)
+	{
+		if(vet[i]<menor)
+		{
+			menor = vet[i];
+			volta = i+1;
+		}
+	}
+
+	*volta_minimo = volta;
+	*minimo = menor;
+
+}
+
+int max_tempo(int* vet,int a,int* maximo,int* volta_maximo)
+{
+	int maior = vet[0];
+	int volta = 1;
+	
+	for(int i=1;i<a;i++)
+	{
+		if(vet[i]>maior)
+		{
+			maior=vet[i];
+			volta = i+1;
+		}
+	}
+
+	*volta_maximo = volta;
+	*maximo=maior;
+
+}
+
+void prencher_lista(int* vet,int n)
+{
+	int aux=0;
+	for(int i=0;i<n;++i)
+	{
+		scanf("%d",&aux);
+		vet[i]=aux;
+	}
+}
+
+void media(int* vet,int a)
+{
+	float m=0;
+	float soma=0.0;
+	for (int i = 0; i < a; ++i)
+	{
+		soma+=vet[i];
+	}
+	m=soma/a;
+	printf("media = %g\n",m);
+
 }
